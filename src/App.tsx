@@ -8,7 +8,7 @@ function App() {
       Search
       <MainComponent></MainComponent>
     </div>
-    
+
   );
 }
 

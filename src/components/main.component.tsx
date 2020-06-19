@@ -6,6 +6,7 @@ import LoginComponent from './page/login/login.component';
 import HelpComponent from './page/help/help.component';
 import UserComponent from './page/user/user.component';
 import AdminComponent from './page/admin/admin.component';
+import HomeComponent from './page/home/home.component';
 
 
 const MainComponent: React.FC = () => {
@@ -13,28 +14,29 @@ const MainComponent: React.FC = () => {
                 
                 <BrowserRouter>
                     <NavigationComponent></NavigationComponent>    
+                    
                     <Switch>
-                        <Route exact path='/SignUp'  >
+                        <Route exact path='/'>
+                            <HomeComponent></HomeComponent>
+                        </Route>
+                        <Route exact path='/SignUp'>
                             <SignupComponent></SignupComponent>
                         </Route>
                         <Route exact path='/Login'>
                             <LoginComponent></LoginComponent>
                         </Route>                         
                         <Route exact path='/Help'>
-                                <HelpComponent></HelpComponent>
+                            <HelpComponent></HelpComponent>
                         </Route>
                         <Route exact path='/User'>
-                                <UserComponent></UserComponent>
+                            <UserComponent></UserComponent>
                         </Route>
                         <Route exact path='/Admin'>
-                                <AdminComponent></AdminComponent>
+                            <AdminComponent></AdminComponent>
                         </Route>
-
                         
                     </Switch>
 
-                    
-                    
                 </BrowserRouter>
             </div>
     }

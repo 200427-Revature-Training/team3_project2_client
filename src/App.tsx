@@ -5,7 +5,7 @@ import NavigationComponent from './components/navigation.component';
 function App() {
   return (
     <div className="App">
-      Home
+      Home page 
       <MainComponent></MainComponent>
     </div>
 

@@ -8,7 +8,6 @@ function App() {
     <div className="App">
       fund all app
       <MainComponent></MainComponent>
-      <NavigationComponent></NavigationComponent>
     </div>
   );
 }

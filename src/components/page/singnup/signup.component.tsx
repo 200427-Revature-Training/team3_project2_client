@@ -3,8 +3,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -53,7 +51,6 @@ const useStyles = makeStyles((theme) => ({
 
 const SignupComponent:React.FC=()=>{
   const classes = useStyles();
-
   const initialState={
     firstName:"",
     lastName:"",
@@ -91,21 +88,19 @@ let {
     setSignupForm((prevState: any)=>({
       ...prevState, [target.name]:target.value
       }))
-
    
   }
 
   const submitHandler=(e:any)=>{
     e.preventDefault();
   
-    const validation =validate(); 
-    if(validation){
+    const isValidated =validate(); 
+    if(isValidated){
       console.log("SignupForm", singupForm);
 
       /** add remote*/
 
     }
-  
   }
 
   /** VALIDATE */
@@ -127,28 +122,21 @@ let {
       }
 
       /* Email   */
-      if(!email){
-        setSignupForm((previousState:any) => ({...previousState, emailError :" email is required "})); 
+      if(!email.includes("@") || !(email.length>10)){
+        setSignupForm((previousState:any) => ({...previousState, emailError :" email is invalid, email:should be at least 10 characters and includes @ "})); 
         return false; 
       }else{
         setSignupForm((previousState:any) => ({...previousState, emailError :""}));
       }
 
       /* password  */
-      if(!password){
-        setSignupForm((previousState:any) => ({...previousState, passwordError:" password is required "})); 
+      if(!(password.length>=8)){
+        setSignupForm((previousState:any) => ({...previousState, passwordError:" password is required, should be at least 8 characters. "})); 
         return false; 
       }else {
         setSignupForm((previousState:any) => ({...previousState, passwordError:""})); 
       }
 
-      /** verify password  */
-      if(!verifyPassword){
-        setSignupForm((previousState:any) => ({...previousState, verifyPasswordError:" verified password is required "})); 
-        return false; 
-      }else{
-        setSignupForm((previousState:any) => ({...previousState, verifyPasswordError:""})); 
-      }
       /** verify password match  */
       if(verifyPassword!==password){
         setSignupForm((previousState:any) => ({...previousState, verifyPasswordError:" verified password does not match your password! "})); 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -63,6 +63,64 @@ const useStyles = makeStyles((theme) => ({
 const LoginComponent:React.FC=()=>{
   const classes = useStyles();
 
+  const initialState={
+    email:"",
+    password:"",
+    emailError:"",
+    passwordError:"",
+    }
+
+const [singinForm, setSigninForm]=useState(initialState); 
+
+let { email,
+      password,
+      emailError,
+      passwordError
+    }= singinForm; 
+
+/** change handler */
+  const changeHandler=(e:any)=>{
+    const target=e.target; 
+    setSigninForm((prevState: any)=>({
+      ...prevState, [target.name]:target.value
+      }))
+  }
+/** submit handler */
+const submitHandler =(e:any)=>{
+  e.preventDefault(); 
+  const isValidated = validate(); 
+  console.log("isValidated", isValidated); 
+
+  if(isValidated){
+    console.log("SignupForm", singinForm); 
+    /**  */
+
+  }
+}
+
+/** Sign in Validation */
+const validate =()=>{
+  
+  /* Email   */
+  if(!email.includes("@") || !(email.length>10)){
+    setSigninForm((previousState:any) => ({...previousState, emailError :" email is invalid! "})); 
+    return false; 
+  }else{
+    setSigninForm((previousState:any) => ({...previousState, emailError :""}));
+  }
+
+  /* password  */
+  if(!password){
+    setSigninForm((previousState:any) => ({...previousState, passwordError:" password is required "})); 
+    return false; 
+  }else {
+    setSigninForm((previousState:any) => ({...previousState, passwordError:""})); 
+  }
+
+  return true; 
+}
+
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -75,7 +133,7 @@ const LoginComponent:React.FC=()=>{
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate  onSubmit={submitHandler}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -86,7 +144,9 @@ const LoginComponent:React.FC=()=>{
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={changeHandler}
             />
+            <div style={{fontSize:12,color:"red"}} >{emailError}</div>
             <TextField
               variant="outlined"
               margin="normal"
@@ -97,7 +157,9 @@ const LoginComponent:React.FC=()=>{
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={changeHandler}
             />
+            <div style={{fontSize:12,color:"red"}} >{passwordError}</div>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
@@ -112,11 +174,6 @@ const LoginComponent:React.FC=()=>{
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
               <Grid item>
                 <LinkReact.Link to="/SignUp">
                   {"Don't have an account? Sign Up"}

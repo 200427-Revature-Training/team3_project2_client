@@ -16,6 +16,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import  *  as LinkReact from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -280,9 +281,9 @@ let {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+            <LinkReact.Link to="/Login"> 
                 Already have an account? Sign in
-              </Link>
+              </LinkReact.Link>
             </Grid>
           </Grid>
         </form>

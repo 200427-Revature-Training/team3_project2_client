@@ -1,10 +1,7 @@
 import React from 'react';
 
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles'
-import { Drawer, AppBar, CssBaseline, Toolbar, List, Typography, Divider, 
-ListItem, ListItemText, Button } from '@material-ui/core'
-import NavigationComponent from '../../navigation.component';
-import { Link } from 'react-router-dom';
+import { Drawer, CssBaseline, Toolbar, List, ListItem, ListItemText } from '@material-ui/core'
 import { useState } from 'react';
 import { AboutComponent } from './about';
 import { UsingFundAll } from './using.fundall';
@@ -30,9 +27,11 @@ const useStyles = makeStyles((theme: Theme) =>
     drawerPaper: {
       width: drawerWidth,
       marginTop: 64,
+      backgroundColor: '#bdbdbd',
     },
     drawerContainer: {
       overflow: 'auto',
+
     },
     content: {
       flexGrow: 1,

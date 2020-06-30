@@ -31,8 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
   return (
     <div className={classes.root}>
-    <title> <h1>Welcome To Fund the Movement</h1> </title>
-      <GridList cellHeight={180} className={classes.gridList}>
+          <GridList cellHeight={180} className={classes.gridList}>
           <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
           <ListSubheader component="div">Browse the Top Movements</ListSubheader>
         </GridListTile>

@@ -8,7 +8,6 @@ import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import tileData from './tileData';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -26,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
   const HomeComponent:React.FC=()=> {
+    console.log(tileData[0].img); 
   const classes = useStyles();
 
   return (
@@ -40,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
         {tileData.map((tile) => (
           <GridListTile key={tile.id}>
             <img src={require(`${tile.img}`)} alt={tile.title} />
-            <GridListTileBar
+           <GridListTileBar
               title={tile.title}
               subtitle={<span>by: {tile.author}</span>}
               actionIcon={
@@ -54,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
       </GridList>
     </div>
   );
+
 }
 
 export default HomeComponent;

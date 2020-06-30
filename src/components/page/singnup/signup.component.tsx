@@ -15,6 +15,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import  *  as LinkReact from 'react-router-dom';
+import Paper from '@material-ui/core/Paper';
 
 function Copyright() {
   return (
@@ -28,10 +29,20 @@ function Copyright() {
     </Typography>
   );
 }
-
 const useStyles = makeStyles((theme) => ({
+  root: {
+    height: '100vh',
+  },
+  image : {
+    backgroundImage: 'url(https://source.unsplash.com/random)',
+    backgroundRepeat: 'no-repeat',
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  },
   paper: {
-    marginTop: theme.spacing(8),
+    margin: theme.spacing(8, 4),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -42,12 +53,13 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(1),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
 }));
+
 
 const SignupComponent:React.FC=()=>{
   const classes = useStyles();
@@ -102,7 +114,6 @@ let {
 
     }
   }
-
   /** VALIDATE */
     
   const validate =()=>{
@@ -162,8 +173,10 @@ let {
   const signUpRole =['admin', 'user']; 
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Grid container component="main"  className={classes.root}>
       <CssBaseline />
+      <Grid item xs={false} sm={4} md={7} className={classes.image}/>
+       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -274,12 +287,13 @@ let {
               </LinkReact.Link>
             </Grid>
           </Grid>
+          <Box mt={5}>
+            <Copyright />
+          </Box>
         </form>
-      </div>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
-    </Container>
+      </div> 
+      </Grid> 
+    </Grid>
   );
 }
 

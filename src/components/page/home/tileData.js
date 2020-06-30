@@ -1,79 +1,25 @@
 
 const tileData = [
-    { id:1,
-      img:"'/static/images/grid-list/covid.jpg",
-      title: 'COVID-19 Relief',
-      author: 'user1',
-      cols: 2,
-      featured: true,
-    },
-    {
-      id:2,
-      img: '/static/images/grid-list/burgers.jpg',
-      title: 'Bail-Out Protesters',
-      author: 'user2',
-    },
-    {
-      id:3,
-      img: '/static/images/grid-list/camera.jpg',
-      title: 'Rising from the Ashes',
-      author: 'user3',
-    },
-    {
-      id:4,
-      img: '/static/images/grid-list/morning.jpg',
-      title: "Rebuild after the Flood",
-      author: 'user4',
-      featured: true,
-    },
-    {
-      id:5,
-      img: '/static/images/grid-list/hats.jpg',
-      title: 'Navajo Reservation Relief',
-      author: 'user5',
-    },
-    {
-      id: 6,
-      img: '/static/images/grid-list/honey.jpg',
-      title: 'Atlanta Black Owned Relief Incorperated',
-      author: 'user6',
-    },
-    {
-      id: 7,
-      img: '/static/images/grid-list/vegetables.jpg',
-      title: 'A living tribute',
-      author: 'user6',
-      cols: 2,
-    },
-    {
-      id: 8,
-      img: '/static/images/grid-list/plant.jpg',
-      title: 'Justice for Elijiah McClain',
-      author: 'user7',
-    },
-    {
-      id: 9,
-      img: '/static/images/grid-list/mushroom.jpg',
-      title: 'In Honor of Zach Gilb',
-      author: 'user8',
-    },
-    {
-      id: 10,
-      img: '/static/images/grid-list/olive.jpg',
-      title: 'Save the Puppies',
-      author: 'user9',
-    },
-    { id:11,
-      img: '/static/images/grid-list/star.jpg',
-      title: 'Support the Rescue Animals',
-      cols: 2,
-      author: 'user10',
-    },
-    { id: 12,
-      img: '/static/images/grid-list/bike.jpg',
-      title: 'Send a kid to College',
-      author: 'user11',
-    },
-  ];
-  
+  { id:1,
+    img :'./images/fire.jpg',
+    title: 'COVID-19 Relief',
+    author: 'user1',
+    cols: 2,
+    featured: true,
+  },
+  {
+    id:2,
+    //img: './images/burgers.jpg',
+    img: './images/collega.jpg',
+    title: 'Bail-Out Protesters',
+    author: 'user2',
+  },
+  {
+    id:3,
+    img: './images/justice.jpg',
+    title: 'Rising from the Ashes',
+    author: 'user3',
+  }
+];
+
   export default tileData;

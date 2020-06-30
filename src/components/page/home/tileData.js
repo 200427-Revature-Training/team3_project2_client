@@ -19,6 +19,12 @@ const tileData = [
     img: './images/justice.jpg',
     title: 'Rising from the Ashes',
     author: 'user3',
+  },
+  {
+    id:3,
+    img: './images/justice.jpg',
+    title: 'Rising from the Ashes',
+    author: 'user3',
   }
 ];
 

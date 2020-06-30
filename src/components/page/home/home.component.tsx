@@ -31,14 +31,15 @@ const useStyles = makeStyles((theme) => ({
   const classes = useStyles();
 
   return (
-         <div className={classes.root}>
+    <div className={classes.root}>
+    <title> <h1>Welcome To Fund the Movement</h1> </title>
       <GridList cellHeight={180} className={classes.gridList}>
-        <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+          <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
           <ListSubheader component="div">Browse the Top Movements</ListSubheader>
         </GridListTile>
         {tileData.map((tile) => (
-          <GridListTile key={tile.img}>
-            <img src={tile.img} alt={tile.title} />
+          <GridListTile key={tile.id}>
+            <img src={require(`${tile.img}`)} alt={tile.title} />
             <GridListTileBar
               title={tile.title}
               subtitle={<span>by: {tile.author}</span>}

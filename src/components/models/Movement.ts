@@ -4,6 +4,7 @@ import { User } from '../models/User';
 export interface Movement {
     moveId?: number;
     moveGoal: number;
+    moveCurrent: number;
     moveStart: Date | string;
     moveExpire?: Date | string;
     moveDescription: string;
@@ -11,4 +12,5 @@ export interface Movement {
     moveApprover?: User | string | number; 
     moveStatus: number | string;
     moveType: number | string;
+    moveImage: string;
 }

@@ -20,8 +20,8 @@ export const getUserById = async (id: Number | string | User) => {
     });
 }
 
-//Returns tickets with matching status string
-export const filterTickets = async (status: string) => {
+//Returns movements with matching status string
+export const getMovementByStatus = async (status: string) => {
 
     const response = await internalAxios.post<Movement[]>('',  {
         status

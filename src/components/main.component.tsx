@@ -7,6 +7,7 @@ import HelpComponent from './page/help/help.component';
 import UserComponent from './page/user/user.component';
 import AdminComponent from './page/admin/admin.component';
 import HomeComponent from './page/home/home.component';
+import MovementComponent from './page/movement/movement.component'; 
 
 
 const MainComponent: React.FC = () => {
@@ -33,6 +34,9 @@ const MainComponent: React.FC = () => {
                         </Route>
                         <Route exact path='/Admin'>
                             <AdminComponent></AdminComponent>
+                        </Route>
+                        <Route exact path='/Movement'>
+                            <MovementComponent></MovementComponent>
                         </Route>
                         
                     </Switch>

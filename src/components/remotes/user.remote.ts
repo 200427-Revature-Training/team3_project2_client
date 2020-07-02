@@ -3,8 +3,6 @@ import { User } from '../models/User';
 import { Movement } from '../models/Movement';
 
 
-
-
 export const getAllMovements = async (id: number) => {
     
     const response = await internalAxios.post<Movement[]>('', {id});
@@ -24,9 +22,9 @@ export const getApprover = async (id: number) => {
 }
 
 export const makeNewMovement = async (movememnt : Movement) => {
-    
+
     const response = await internalAxios.post<Movement[]>('', {movememnt});
-    return response.data.map(users => {
-        return users;
+    return response.data.map(movements => {
+        return movements; 
     });
 }

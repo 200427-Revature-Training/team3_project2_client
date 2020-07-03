@@ -7,6 +7,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import tileData from './tileData';
+import { Grid } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,11 +15,11 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: 'light-grey',
   },
   gridList: {
-    width: 900,
-    height: 750,
+    width: 1100,
+    height: 850,
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
@@ -30,6 +31,13 @@ const useStyles = makeStyles((theme) => ({
   const classes = useStyles();
 
   return (
+  
+    <Grid container component="main" className={classes.root}>
+      <div><React.Fragment>
+    <h1>Welcome to Fund the Movement!</h1>
+   </React.Fragment>
+   </div>
+   
     <div className={classes.root}>
           <GridList cellHeight={180} className={classes.gridList}>
           <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
@@ -50,7 +58,8 @@ const useStyles = makeStyles((theme) => ({
           </GridListTile>
         ))}
       </GridList>
-    </div>
+          </div>
+        </Grid>
   );
 
 }

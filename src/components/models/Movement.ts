@@ -13,4 +13,5 @@ export interface Movement {
     moveStatus: number | string;
     moveType: number | string;
     moveImage: string;
+    moveName: string;
 }

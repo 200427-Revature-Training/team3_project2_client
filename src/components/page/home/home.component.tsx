@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -7,8 +8,6 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import tileData from './tileData';
-import { Link } from 'react-router-dom';
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
   const HomeComponent:React.FC=()=> {
     console.log(tileData[0].img); 
   const classes = useStyles();
@@ -41,12 +41,12 @@ const useStyles = makeStyles((theme) => ({
           <GridListTile key={tile.id}>
             <img src={require(`${tile.img}`)} alt={tile.title} />
            <GridListTileBar
-          
               title={tile.title}
               subtitle={<span>by: {tile.author}</span>}
               actionIcon={
-                <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
-                 <Link to="/Movement" color="White"  className="MovementButton"> View Page </Link>
+                <IconButton onClick={() => {}} aria-label={`info about ${tile.title}`} className={classes.icon}>
+                  <Link to="/Movement" className="MovementButton"> View Page </Link>
+                  <InfoIcon />
                 </IconButton>
               }
             />

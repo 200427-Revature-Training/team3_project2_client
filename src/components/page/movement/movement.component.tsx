@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
               subtitle={<span>by: {tile.author}</span>}
               actionIcon={
                 <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
-                  <InfoIcon />
+                <InfoIcon />
                 </IconButton>
               }
             />

@@ -7,6 +7,8 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import tileData from './tileData';
+import { Link } from 'react-router-dom';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,11 +41,12 @@ const useStyles = makeStyles((theme) => ({
           <GridListTile key={tile.id}>
             <img src={require(`${tile.img}`)} alt={tile.title} />
            <GridListTileBar
+          
               title={tile.title}
               subtitle={<span>by: {tile.author}</span>}
               actionIcon={
                 <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
-                  <InfoIcon />
+                 <Link to="/Movement" color="White"  className="MovementButton"> View Page </Link>
                 </IconButton>
               }
             />

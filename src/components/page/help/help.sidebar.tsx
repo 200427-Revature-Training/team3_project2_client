@@ -9,6 +9,7 @@ import { ManagingYourAccount } from './mng.account';
 import { FAQsComponent } from './faq';
 import { RulesAndPolicies } from './rules.policies';
 import { ContactComponent } from './contact';
+import Box from '@material-ui/core/Box';
  
 const drawerWidth = 240;
 
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     drawerPaper: {
       width: drawerWidth,
-      marginTop: 64,
+      zIndex: 0,
       backgroundColor: '#bdbdbd',
     },
     drawerContainer: {
@@ -39,6 +40,14 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     title: {
         flexGrow: 1,
+    },
+    pic: {
+      height: 200,
+      width: "100%",
+      objectFit: "cover",
+    },
+    header: {
+      height: 200,
     }
   }),
 );
@@ -61,7 +70,7 @@ export const ClippedDrawer = () => {
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
-            {['About', 'Using Fund All', 'Managing Your Account', 'FAQs', 'Rules & Policies', 'Contact Us'].map((text, index) => (
+            {['Mission', 'Using Fund the Movement', 'Managing Your Account', 'FAQs', 'Rules & Policies', 'Contact Us'].map((text, index) => (
               <ListItem button key={text} 
               onClick={() => {switch(index){
                 case 0:
@@ -90,7 +99,9 @@ export const ClippedDrawer = () => {
         </div>
       </Drawer>
       <main className={classes.content}>
-        <Toolbar />
+        <Box className={classes.header} width="100%">
+            <img className={classes.pic} src="https://revature-bootcamp.s3.us-east-2.amazonaws.com/Project+2/adi-goldstein-n2V4ZNflsHM-unsplash+(2).jpg"/>
+        </Box>
         {mainSection}
       </main>
     </div>

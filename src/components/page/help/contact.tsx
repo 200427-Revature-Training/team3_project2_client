@@ -7,14 +7,26 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { kMaxLength } from 'buffer';
+import { Divider } from '@material-ui/core';
 
 
 const useStyles = makeStyles({
   root: {
     maxWidth: kMaxLength,
-    backgroundColor: '#2196f3', 
-
+    backgroundColor: '#bdbdbd', 
+    marginTop: "1rem",
   },
+  content: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  cards: {
+    width: "50%",
+  },
+  subheader: {
+    fontSize: 19,
+  }
 });
 
 export const ContactComponent: React.FC = () => {
@@ -22,34 +34,44 @@ export const ContactComponent: React.FC = () => {
 
   return (
     <section>
-        <div> Contact US </div>
         <Card className={classes.root}>
-
-        <CardActionArea>
-            <CardMedia
-            component="img"
-            alt="covid"
-            height="500"
-            image={require("../../../images/flood.jpg")}
-            title="covid"
-            />
-            <CardContent>
+          <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-            Contact Component
+            Contact Us
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-            How GoFundMe Works
-    GoFundMe is the best place to fundraise, whether you are an individual, group, or organization.
-    How GoFundMe Works
-    GoFundMe is the best place to fundraise, whether you are an individual, group, or organization.
-    How GoFundMe Works
-    GoFundMe is the best place to fundraise, whether you are an individual, group, or organization.
-    How GoFundMe Works
-    GoFundMe is the best place to fundraise, whether you are an individual, group, or organization.How GoFundMe Works
-    GoFundMe is the best place to fundraise, whether you are an individual, group, or organization.
+            <br/>
+            <Typography className={classes.content} variant="body2" color="textSecondary" component="p">
+              <div className={classes.cards}>
+                <Typography className={classes.subheader} variant="h5" >
+                  Email
+                </Typography>
+                <Divider/>
+                <Typography>
+                  fundthemovement@fakemail.com
+                  <br/>
+                  24/7
+                </Typography>
+              </div>
+              <div className={classes.cards}>
+                <Typography className={classes.subheader} variant="h5">
+                  Phone Number
+                </Typography>
+                <Divider/>
+                <Typography>
+                  (325)368-6237
+                  <br/>
+                  Mon-Fri, 9am-5pmET
+                </Typography>
+              </div>
             </Typography>
-            </CardContent>
-        </CardActionArea>
+          </CardContent>
+          <CardMedia
+          component="img"
+          alt="covid"
+          height="300"
+          image="https://revature-bootcamp.s3.us-east-2.amazonaws.com/Project+2/kelly-sikkema-fvpgfw3IF1w-unsplash.jpg"
+          title="thank you"
+          />
         </Card>
     </section>
   );

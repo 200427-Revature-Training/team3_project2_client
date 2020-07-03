@@ -30,7 +30,7 @@ const NavigationComponent:React.FC=()=>{
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            GOFundMe 
+            Fund the Movement  
             <Button color="primary"> <Link to="/" className="HomeButton"> Home </Link> </Button>
             <Button color="primary" > <Link to="/Help"  className="HelpButton"> Help </Link> </Button>
           </Typography>

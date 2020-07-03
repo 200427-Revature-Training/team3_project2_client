@@ -102,7 +102,7 @@ const validate =()=>{
   
   /* Email   */
   if(!email.includes("@") || !(email.length>10)){
-    setSigninForm((previousState:any) => ({...previousState, emailError :" email is invalid! "})); 
+    setSigninForm((previousState:any) => ({...previousState, emailError :"Please enter vaild Email! "})); 
     return false; 
   }else{
     setSigninForm((previousState:any) => ({...previousState, emailError :""}));
@@ -110,7 +110,7 @@ const validate =()=>{
 
   /* password  */
   if(!password){
-    setSigninForm((previousState:any) => ({...previousState, passwordError:" password is required "})); 
+    setSigninForm((previousState:any) => ({...previousState, passwordError:"Correct Password required"})); 
     return false; 
   }else {
     setSigninForm((previousState:any) => ({...previousState, passwordError:""})); 

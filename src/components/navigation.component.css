@@ -1,5 +1,8 @@
-.HomeButton, .SingUpButton, .SingInButton, .HelpButton{
+.HomeButton, .SingUpButton, .SingInButton, .HelpButton, .NewMovementButton{
     color: white;
     text-decoration: none; 
 
+}
+#NewMovementButton {
+    color: white;
 }

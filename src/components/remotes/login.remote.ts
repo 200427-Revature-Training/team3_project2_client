@@ -8,3 +8,12 @@ export const login = async (logger: User) => {
         return user;
     });
 }
+
+export const signup = async (logger: User) => {
+    console.log (logger);
+
+    const response = await internalAxios.post<User>('/user', logger);
+         
+        return response.data;
+    
+}

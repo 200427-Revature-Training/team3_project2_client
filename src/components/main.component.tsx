@@ -42,6 +42,8 @@ const MainComponent: React.FC = () => {
                         <Route exact path='/MovementForm'>
                             <MovementFormComponent></MovementFormComponent>
                         </Route>
+                        <Route exact path='/Admin'>
+                            <AdminComponent></AdminComponent>                       </Route>
                         
                     </Switch>
 

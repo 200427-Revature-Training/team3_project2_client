@@ -16,8 +16,9 @@ export const getAllMovements = async () => {
 
 export const makeNewMovement = async (movememnt : Movement) => {
 
-    const response = await internalAxios.post<Movement[]>('/movement', {movememnt});
-    return response.data.map(movements => {
-        return movements; 
-    });
+    const response = await internalAxios.post<Movement>('/movement', movememnt);
+ 
+        return response.data; 
+
 }
+

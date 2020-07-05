@@ -7,12 +7,12 @@ export interface Movement {
     goal: number;
     current: number;
     start: Date | string;
-    expire?: Date | string;
+    expire?: Date | string | null;
     description: string;
-    author: User ;
-    approver?: User | string | number; 
-    status: {id: number, movementStatus: string};
-    type: {id: number, movementType: string};
+    author: User | number;
+    approver?: User | string | number | null; 
+    status: {id: number, movementStatus: string}| number;
+    type: {id: number, movementType: string} | number;
     image: string;
     name: string;
 

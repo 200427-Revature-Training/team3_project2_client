@@ -4,13 +4,13 @@ import { User } from '../models/User';
 export interface Movement {
     moveId?: number;
     moveGoal: number;
-    moveCurrent: number;
+    moveCurrent?: number;
     moveStart: Date | string;
     moveExpire?: Date | string;
     moveDescription: string;
-    moveAuthor: User | string | number;
+    moveAuthor?: User | string | number;
     moveApprover?: User | string | number; 
-    moveStatus: number | string;
+    moveStatus?: number | string;
     moveType: number | string;
     moveImage: string;
     moveName: string;

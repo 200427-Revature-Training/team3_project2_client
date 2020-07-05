@@ -8,6 +8,7 @@ import UserComponent from './page/user/user.component';
 import AdminComponent from './page/admin/admin.component';
 import HomeComponent from './page/home/home.component';
 import MovementComponent from './page/movement/movement.component'; 
+import MovementFormComponent from './page/movement/movementForm.component';
 
 
 const MainComponent: React.FC = () => {
@@ -37,6 +38,9 @@ const MainComponent: React.FC = () => {
                         </Route>
                         <Route exact path='/Movement'>
                             <MovementComponent></MovementComponent>
+                        </Route>
+                        <Route exact path='/MovementForm'>
+                            <MovementFormComponent></MovementFormComponent>
                         </Route>
                         
                     </Switch>

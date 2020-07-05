@@ -5,16 +5,22 @@ import { Movement } from '../models/Movement';
 
 //Returns ticket array for admin
 export const getAllMovements = async () => {
-    
-    const response = await internalAxios.get<Movement[]>('');    
+
+    const response = await internalAxios.get<Movement[]>('/movement');
     return response.data.map(movements => {
         return movements;
     });
 }
 
-export const getUserById = async (id: Number | string | User) => {
+export const getUserById = async (id: Number) => {
 
-    const response = await internalAxios.post<User[]>('', {id});
+
+
+    const response = await internalAxios.get<User[]>('/user/id', {
+        params: {
+            id: id
+        }
+    });
     return response.data.map(users => {
         return users;
     });
@@ -23,16 +29,18 @@ export const getUserById = async (id: Number | string | User) => {
 //Returns movements with matching status string
 export const getMovementByStatus = async (status: string) => {
 
-    const response = await internalAxios.post<Movement[]>('',  {
-        status
-      });
+    const response = await internalAxios.get<Movement[]>('/movement/status/stat', {
+        params: {
+            stat: status
+        }
+    });
     return response.data.map(movements => {
         return movements;
     });
 }
 
-export const changeStatus = async (movement : Movement) => {
-    const response = await internalAxios.post<Movement[]>('', {movement});
+export const changeStatus = async (movement: Movement) => {
+    const response = await internalAxios.put<Movement[]>('/movement', { movement });
     return response.data.map(movements => {
         return movements;
     });

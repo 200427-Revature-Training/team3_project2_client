@@ -3,27 +3,20 @@ import { User } from '../models/User';
 import { Movement } from '../models/Movement';
 
 
-export const getAllMovements = async (id: number) => {
-    
-    const response = await internalAxios.post<Movement[]>('', {id});
-    console.log(response);
-    
+//Returns ticket array for admin
+export const getAllMovements = async () => {
+
+    const response = await internalAxios.get<Movement[]>('/movement');
     return response.data.map(movements => {
         return movements;
     });
 }
 
-export const getApprover = async (id: number) => {
 
-    const response = await internalAxios.post<User[]>('', {id});
-    return response.data.map(users => {
-        return users;
-    });
-}
 
 export const makeNewMovement = async (movememnt : Movement) => {
 
-    const response = await internalAxios.post<Movement[]>('', {movememnt});
+    const response = await internalAxios.post<Movement[]>('/movement', {movememnt});
     return response.data.map(movements => {
         return movements; 
     });

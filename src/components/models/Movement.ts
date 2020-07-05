@@ -2,16 +2,20 @@ import { User } from '../models/User';
 
 
 export interface Movement {
-    moveId?: number;
-    moveGoal: number;
-    moveCurrent?: number;
-    moveStart: Date | string;
-    moveExpire?: Date | string;
-    moveDescription: string;
-    moveAuthor?: User | string | number;
-    moveApprover?: User | string | number; 
-    moveStatus?: number | string;
-    moveType: number | string;
-    moveImage: string;
-    moveName: string;
+    id?: number;
+    goal: number;
+    current: number;
+    start: Date | string;
+    expire?: Date | string;
+    description: string;
+    author: User ;
+    approver?: User | string | number; 
+    status: {id: number, movementStatus: string};
+    type: {id: number, movementType: string};
+    image: string;
+    name: string;
+
+    
 }
+
+

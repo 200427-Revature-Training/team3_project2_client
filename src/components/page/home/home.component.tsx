@@ -68,12 +68,15 @@ const HomeComponent: React.FC = () => {
 
       console.log(movement[0].image);
 
+   
+
       return (movement.map((tile) => (
+        
         <GridListTile key={tile.id}>
           <img src={require(`${tile.image}`)} alt={tile.name} />
           <GridListTileBar
             title={tile.name}
-            subtitle={<span>by: {tile.author.firstName}</span>}
+            subtitle={<span>by: {(tile.author as User).firstName }</span>}
             actionIcon={
               <IconButton onClick={() => { }} aria-label={`info about ${tile.name}`} className={classes.icon}>
                 <Link to="/Movement" className="MovementButton"> View Page </Link>

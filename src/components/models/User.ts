@@ -6,5 +6,5 @@ export interface User {
     password: string;
     firstName: string;
     lastName: string;
-    roleId: {id: number, userRole: string};
+    roleId: {id: number, userRole: string} | number;
 }  

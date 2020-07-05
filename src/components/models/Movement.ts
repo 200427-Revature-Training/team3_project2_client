@@ -2,7 +2,6 @@ import { User } from '../models/User';
 
 
 export interface Movement {
-
     id?: number;
     goal: number;
     current: number;
@@ -18,6 +17,5 @@ export interface Movement {
 
     
 }
-
 
 

@@ -1,0 +1,11 @@
+#movement-header {
+    background-color: antiquewhite;
+    color: antiquewhite;
+    margin-top: 12px;
+    margin-bottom: 0px;
+}
+
+#movementContainer {
+    display: flex;
+    flex-wrap: wrap;
+}

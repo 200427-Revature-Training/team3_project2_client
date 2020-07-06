@@ -17,11 +17,10 @@ export const getMovementById = async (id: Number) => {
 //Returns movements with matching status string
 export const getMovementByStatus = async (status: string) => {
 
-    const response = await internalAxios.get<Movement[]>('/movement/status/stat', {
-        params: {
-            stat: status
-        }
+    const response = await internalAxios.get<Movement[]>('/movement/status/' + status, {
+        
     });
+   // console.log(response);
     return response.data.map(movements => {
         return movements;
     });
@@ -30,10 +29,8 @@ export const getMovementByStatus = async (status: string) => {
 //Returns movements with matching type string
 export const getMovementByType = async (type: string) => {
 
-    const response = await internalAxios.get<Movement[]>('/movement/type/type', {
-        params: {
-            type: type
-        }
+    const response = await internalAxios.get<Movement[]>('/movement/type/' + type, {
+     
     });
     return response.data.map(movements => {
         return movements;
@@ -42,11 +39,7 @@ export const getMovementByType = async (type: string) => {
 
 export const getMovementByKeyword = async (word: string) => {
 
-    const response = await internalAxios.get<Movement[]>('/movement/search/word', {
-        params: {
-            word: word
-        }
-    });
+    const response = await internalAxios.get<Movement[]>('/movement/search/'+word);
     return response.data.map(movements => {
         return movements;
     });

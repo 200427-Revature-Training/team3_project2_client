@@ -7,6 +7,9 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import tileData from '../home/tileData';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { Movement } from '../../models/Movement';
+import { User } from '../../models/User';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,34 +28,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-  const MovementComponent:React.FC=()=> {
-    //console.log(tileData[0].img); 
+const MovementComponent: React.FC<RouteComponentProps> = (props) => {
+  //console.log(tileData[0].img); 
   const classes = useStyles();
-
+  var tile: Movement = props.location.state as Movement;
   return (
     <div className={classes.root}>
-          <GridList cellHeight={180} className={classes.gridList}>
-          <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+      <GridList cellHeight={180} className={classes.gridList}>
+        <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
           <ListSubheader component="div">Movement Page: Test Page</ListSubheader>
         </GridListTile>
-        {tileData.map((tile) => (
+        {
+
           <GridListTile key={tile.id}>
-            <img src={(`${tile.img}`)} alt={tile.title} />
-           <GridListTileBar
-              title={tile.title}
-              subtitle={<span>by: {tile.author}</span>}
-              actionIcon={
-                <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
-                <InfoIcon />
-                </IconButton>
-              }
+            <img src={require(`${'../home/images/flood.jpg'}`)} alt={tile.name} />
+            <GridListTileBar
+              title={tile.name}
+              subtitle={<span>by: {(tile.author as User).firstName}</span>}
+              
             />
           </GridListTile>
-        ))}
+        }
       </GridList>
     </div>
   );
 
 }
-
-export default MovementComponent;
+export default withRouter(MovementComponent);

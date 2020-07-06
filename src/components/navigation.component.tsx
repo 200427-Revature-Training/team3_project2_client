@@ -1,6 +1,6 @@
 import * as userRemote from './remotes/user.remote';
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { createStyles, makeStyles, Theme, fade } from '@material-ui/core/styles';
 import { Modal, Form } from 'react-bootstrap';
 import InputBase from '@material-ui/core/InputBase';
@@ -11,6 +11,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import './navigation.component.css';
 import { Movement } from './models/Movement';
+import IconButton from '@material-ui/core/IconButton';
+import { User } from './models/User';
+import * as searchbarRemote from './remotes/searchbar.remote';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -68,6 +71,20 @@ const useStyles = makeStyles((theme: Theme) =>
         },
       },
     },
+    iconButton: {
+      position: 'relative',
+      borderRadius: theme.shape.borderRadius,
+      backgroundColor: fade(theme.palette.common.white, 0.15),
+      '&:hover': {
+        backgroundColor: fade(theme.palette.common.white, 0.25),
+      },
+      marginLeft: 0,
+      width: '100%',
+      [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(1),
+        width: 'auto',
+      },
+    },
   }),
 );
 
@@ -81,6 +98,22 @@ const NavigationComponent: React.FC = () => {
   const [moveDescription, setMoveDescription] = useState('');
   const [moveType, setMoveType] = useState('');
   const [moveImage, setMoveImage] = useState('');
+  const [searchVal, setSearchVal] = useState('');
+  const [Movements, setMovements] = useState<Movement[]>([]);
+
+  const history = useHistory();
+
+
+  var user: User = {
+    id: 0,
+    email: "singupForm.email",
+    password: "singupForm.password",
+    firstName: "singupForm.firstName",
+    lastName: "singupForm.lastName",
+    roleId: 1
+
+  }
+  var m: Movement[] = [];
 
 
   const renderMovementForm = () => {
@@ -124,7 +157,7 @@ const NavigationComponent: React.FC = () => {
     }
 
     let m: Movement = {
-      
+
       id: 0,
       goal: moveGoal,
       current: 0,
@@ -134,15 +167,30 @@ const NavigationComponent: React.FC = () => {
       status: 1,
       type: typeid,
       image: './images/flood.jpg',
-      name: moveName     
-    
+      name: moveName
+
     };
 
     console.log(m);
-    if(moveName != ""){
-    userRemote.makeNewMovement(m);
+    if (moveName != "") {
+      userRemote.makeNewMovement(m);
     }
     setModalVisible(false)
+  }
+
+  const search = () => {
+
+    console.log(searchVal);
+
+    if (searchVal != '') {
+      searchbarRemote.getMovementByKeyword(searchVal).then(movements => {
+
+        setMovements(movements.filter(Boolean));
+        console.log(Movements);
+        history.push("/", Movements);
+      });
+      
+    }
   }
 
   return (
@@ -152,7 +200,6 @@ const NavigationComponent: React.FC = () => {
           <Typography variant="h6" className={classes.title}>
             Fund the Movement
             <Button color="primary"> <Link to="/" className="HomeButton"> Home </Link> </Button>
-            <Button color="primary"> <Link to="/Movement" className="MovementButton"> Movement </Link> </Button>
             <Button color="primary"> <Link to="/Help" className="HelpButton"> Help </Link> </Button>
           </Typography>
 
@@ -160,7 +207,7 @@ const NavigationComponent: React.FC = () => {
           <div>
             <Modal show={modalVisible} onHide={() => setModalVisible(false)}>
               <Modal.Header>
-                <Modal.Title>New Ticket</Modal.Title>
+                <Modal.Title>New Movement</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <Form>
@@ -208,10 +255,11 @@ const NavigationComponent: React.FC = () => {
 
 
           <div className={classes.search}>
-            <div className={classes.searchIcon}>
+            <IconButton className={classes.iconButton} aria-label="search" onClick={search}>
               <SearchIcon />
-            </div>
+            </IconButton>
             <InputBase
+              onChange={(e) => setSearchVal(e.target.value)}
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,

@@ -7,7 +7,6 @@ import { AboutComponent } from './about';
 import { UsingFundAll } from './using.fundall';
 import { ManagingYourAccount } from './mng.account';
 import { FAQsComponent } from './faq';
-import { RulesAndPolicies } from './rules.policies';
 import { ContactComponent } from './contact';
 import Box from '@material-ui/core/Box';
  
@@ -70,7 +69,7 @@ export const ClippedDrawer = () => {
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
-            {['Mission', 'Using Fund the Movement', 'Managing Your Account', 'FAQs', 'Rules & Policies', 'Contact Us'].map((text, index) => (
+            {['Mission', 'Using Fund the Movement', 'Managing Your Account', 'FAQs', 'Contact Us'].map((text, index) => (
               <ListItem button key={text} 
               onClick={() => {switch(index){
                 case 0:
@@ -86,9 +85,6 @@ export const ClippedDrawer = () => {
                     setMainSection(<FAQsComponent />);
                     break;
                 case 4:
-                    setMainSection(<RulesAndPolicies />);
-                    break;
-                case 5:
                     setMainSection(<ContactComponent />);
                     break;
               }}}>

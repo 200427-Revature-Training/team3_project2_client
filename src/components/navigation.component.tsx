@@ -12,7 +12,7 @@ import Button from '@material-ui/core/Button';
 import './navigation.component.css';
 import { Movement } from './models/Movement';
 import IconButton from '@material-ui/core/IconButton';
-import { User } from './models/User';
+import { User,User2 } from './models/User';
 import * as searchbarRemote from './remotes/searchbar.remote';
 
 
@@ -104,6 +104,19 @@ const NavigationComponent: React.FC = () => {
   const history = useHistory();
 
 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
   var user: User = {
     id: 0,
     email: "singupForm.email",
@@ -124,25 +137,47 @@ const NavigationComponent: React.FC = () => {
 
   const renderLoginUser = () => {
     if (loggedin == false) {
-      return (  
+      return (
         <div>
-      <Button color="primary" > <Link to="/Login" className="SingInButton"> Sign-in </Link> </Button>
-      <Button color="primary"> <Link to="/SignUp" className="SingUpButton"> Sign-up </Link> </Button>
-      </div>)
+          <Button color="primary" onClick={() => topage("/Login", user)}> <Link to={{
+            pathname: ''
+
+
+          }} className="SingInButton"> Sign-in </Link> </Button>
+          <Button color="primary" onClick={() => topage("/SignUp", user)}> <Link to={{
+            pathname: ''
+
+
+          }} className="SingUpButton"> Sign-up </Link> </Button>
+        </div>)
     }
-    else if(loggedin == true && user.role == 2){
-      return ( 
-        <Button color="primary" > <Link to="/Admin" className="SingInButton"> Profile </Link> </Button>     
-        )
+    else if (loggedin == true && user.role == 2) {
+      return (
+        <Button color="primary" onClick={() => topage("/Admin", user)}> <Link to={{
+          pathname: ''
+
+
+        }} className="SingInButton"> Profile </Link> </Button>
+      )
     }
-    else if(loggedin == true && user.role == 1){
-      return ( 
-        <Button color="primary" > <Link to="/User" className="SingInButton"> Profile </Link> </Button>     
-        )
+    else if (loggedin == true && user.role == 1) {
+      return (
+        <Button color="primary" onClick={() => topage("/User", user)}> <Link to={{
+          pathname: ''
+
+
+        }} className="SingInButton"> Profile </Link> </Button>
+      )
     }
 
   }
 
+  const topage = (page: string, user: User) => {
+    history.push(page, user);
+
+
+
+  }
 
   const saveMovement = () => {
     var typeid = 0;
@@ -290,7 +325,7 @@ const NavigationComponent: React.FC = () => {
             />
           </div>
           {renderLoginUser()}
-        
+
         </Toolbar>
       </AppBar>
     </div>

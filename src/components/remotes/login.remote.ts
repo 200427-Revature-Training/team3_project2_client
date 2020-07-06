@@ -1,5 +1,5 @@
 import { internalAxios } from './internal-axios'
-import { User } from '../models/User';
+import { User,User2 } from '../models/User';
 import { Token } from '../models/Token';
 
 
@@ -22,7 +22,7 @@ export const getUserByEmail = async (email: String, tok : Token) => {
     };
 
 
-    const response = await internalAxios.get<User>('/user/email/'+ email, config);
+    const response = await internalAxios.get<User2>('/user/email/'+ email, config);
     console.log(response.data);
 
     

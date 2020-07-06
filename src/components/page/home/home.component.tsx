@@ -63,7 +63,8 @@ const HomeComponent: React.FC<RouteComponentProps> = (props) => {
            setMovements(m2);
 
            console.log(m2);
-           
+          // console.log(m);
+
    
          });
       });

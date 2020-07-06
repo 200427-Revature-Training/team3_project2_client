@@ -13,6 +13,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import  *  as LinkReact from 'react-router-dom';
+import * as loginRemote from '../../remotes/login.remote';
+import { User } from '../../models/User';
+
 
 function Copyright() {
   return (
@@ -94,6 +97,19 @@ const submitHandler =(e:any)=>{
     console.log("SignupForm", singinForm); 
     /**  */
 
+    var user: User ={
+      id: 0,
+      email: singinForm.email,
+      password: singinForm.password,
+      firstName: '',
+      lastName: '',
+      role: 1
+  };
+  
+  loginRemote.login(user).then(user => {
+    console.log(user);
+
+  });
   }
 }
 

@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Table } from '@material-ui/core';
+import { Button, Table, GridListTile, GridListTileBar, IconButton, makeStyles } from '@material-ui/core';
 import { Form, Col, Modal } from 'react-bootstrap';
 import { Movement } from '../../models/Movement';
 import { User } from '../../models/User';
 import * as adminRemote from '../../remotes/admin.remote';
+import InfoIcon from '@material-ui/icons/Info';
 
 
 
-const AdminComponent:React.FC=(props)=>{
+const AdminComponent: React.FC = (props) => {
     const [movementList, setMovements] = useState<Movement[]>([]);
+    const classes = useStyles();
 
     const [modalView, setModalView] = useState(false);
 
@@ -16,89 +18,124 @@ const AdminComponent:React.FC=(props)=>{
         submit();
     }, [])
 
-    var userMove: User ={
+    var userMove: User = {
         id: 0,
         email: '',
         password: '',
         firstName: '',
         lastName: '',
-        roleId: 0
+        role: 0
     };
 
     userMove = props as User;
 
     const submit = () => {
-        if(userMove) {
-            console.log("Administrative Log: "+ userMove.email);
+        if (userMove) {
+            console.log("Administrative Log: " + userMove.email);
         }
         getAllMovements();
-        renderAdminMovements(movementList);
+        render(movementList);
 
     }
 
-    // Creating the list of all movements
-    const renderAdminMovements = (movement: Movement[]) => {
-        return movement.map(movement => {
-            //Needs to be directed to the new Movement created 
-            return (movementList);
-        })
+
+
+    const render = (movement: Movement[]) => {
+
+        if (movement[0] != undefined) {
+
+            return (movement.map((tile) => (
+                <GridListTile key={tile.id}>
+                    <img src={require(`${tile.image}`)} alt={tile.name} />
+                    <GridListTileBar
+                        title={tile.name}
+                        subtitle={<span>by: {(tile.author as User).firstName}</span>}
+                        actionIcon={
+                            <IconButton onClick={() => { }} aria-label={`info about ${tile.name}`} className={classes.icon}>
+                                <InfoIcon />
+                            </IconButton>
+                        }
+                    />
+                </GridListTile>
+            )))
+        }
+
     }
 
     const getAllMovements = () => {
-        adminRemote.getAllMovements().then(movement => {
-            setMovements(movement);
-        })
-    }
 
-   /** const filterMovements = (status: string) => {
-        adminRemote.filterMovements(status).then(movemment => {
-            setMovements(movemment);
+        adminRemote.getMovementByStatus("Pending").then(movements => {
+            setMovements(movements);
+
         });
-        renderAdminMovements(movementList);
     }
-     */ 
 
-    
+    /** const filterMovements = (status: string) => {
+         adminRemote.filterMovements(status).then(movemment => {
+             setMovements(movemment);
+         });
+         renderAdminMovements(movementList);
+     }
+      */
+
+
     return (
-        <div> 
+        <div>
             <header>
                 <h2 id="movement-header">Movement Approval System</h2>
             </header>
             <div >
-               <button
-                className="adminButton"
+                <button
+                    className="adminButton"
                     onClick={() => setModalView(true)}
-                        >Movements for Review</button>
+                >Movements for Review</button>
             </div>
-            
+
             <section id="movementContainer">
-                {renderAdminMovements(movementList)}
+                {render(movementList)}
             </section>
 
             <Modal show={modalView} onHide={() => setModalView(false)}>
                 <Modal.Header>
-                <Modal.Title>Filter Movements</Modal.Title>
+                    <Modal.Title>Filter Movements</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
                     <Form>
-                <Form.Group>
-                    <Form.Control as="select" id="dropdown"> 
-                        <option value="pending">Pending</option>
-                        <option value= "authorized">Authorized</option>
-                        <option value= "expired">Expired</option>
-                        <option value= "denied">Denied</option>
-                    </Form.Control>
-                </Form.Group>
-                </Form>
+                        <Form.Group>
+                            <Form.Control as="select" id="dropdown">
+                                <option value="pending">Pending</option>
+                                <option value="authorized">Authorized</option>
+                                <option value="expired">Expired</option>
+                                <option value="denied">Denied</option>
+                            </Form.Control>
+                        </Form.Group>
+                    </Form>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={() => setModalView(false)}>Close</Button>
                 </Modal.Footer>
-             </Modal>
+            </Modal>
 
 
         </div>
     );
 }
-export default AdminComponent; 
+export default AdminComponent;
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+        backgroundColor: 'light-grey',
+    },
+    gridList: {
+        width: 1100,
+        height: 850,
+    },
+    icon: {
+        color: 'rgba(255, 255, 255, 0.54)',
+    },
+}));

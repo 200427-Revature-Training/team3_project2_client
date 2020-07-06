@@ -32,6 +32,7 @@ export const getMovementByStatus = async (status: string) => {
     const response = await internalAxios.get<Movement[]>('/movement/status/' + status, {
         
     });
+   // console.log(response);
     return response.data.map(movements => {
         return movements;
     });

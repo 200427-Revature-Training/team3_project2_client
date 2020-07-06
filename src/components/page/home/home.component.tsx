@@ -125,16 +125,20 @@ const HomeComponent: React.FC<RouteComponentProps> = (props) => {
   return (
 
     <Grid container component="main" className={classes.root}>
-      <div><React.Fragment>
+    
+
+      <div className={classes.root}>
+
+        
+        <GridList cellHeight={180} className={classes.gridList}>
+          <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+          <div><React.Fragment>
         <h1>Welcome to Fund the Movement!</h1>
       </React.Fragment>
       </div>
-
-      <div className={classes.root}>
-        <GridList cellHeight={180} className={classes.gridList}>
-          <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
             <ListSubheader component="div">Browse the Top Movements</ListSubheader>
           </GridListTile>
+          
           {fresh()}
         </GridList>
       </div>

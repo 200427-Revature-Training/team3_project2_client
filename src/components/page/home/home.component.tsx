@@ -1,4 +1,4 @@
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, RouteComponentProps, withRouter, useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -14,7 +14,7 @@ import { User } from '../../models/User';
 import { Movement } from '../../models/Movement';
 
 
-const HomeComponent: React.FC = () => {
+const HomeComponent: React.FC<RouteComponentProps> = (props) => {
 
 
 
@@ -23,63 +23,81 @@ const HomeComponent: React.FC = () => {
 
   const [user, setUsers] = useState<User[]>([]);
   const [movementlist, setMovements] = useState<Movement[]>([]);
+  const [movementlist1, setMovements1] = useState<Movement[]>([]);
+  const [movementlist2, setMovements2] = useState<Movement[]>([]);
 
 
-  var m: Movement[] = [{
-    id: 0,
-    goal: 1,
-    current: 0,
-    start: "0",
-    description: "test",
-    author: {
-      id: 0,
-      email: 'string',
-      password: 'string',
-      firstName: 'string',
-      lastName: 'string',
-      roleId: { id: 1, userRole: "2" }
-    },
-    approver: "User | string | number; ",
-    status: { id: 1, movementStatus: "2" },
-    type: { id: 1, movementType: "2" },
-    image: './images/flood.jpg',
-    name: 'name'
+  var m: Movement[] = props.location.state as Movement[];
 
-  }];
+  const history = useHistory();
 
 
 
-  if (movementlist.length == 0) {
-    searchbarRemote.getAllMovements().then(movements => {
-      setMovements(movements);
-    });
-  }
+
   useEffect(() => {
 
-    render(movementlist);
+    // render(movementlist2);
 
+   // fresh();
+    console.log("here");
+   //setMovements(movementlist1.concat(movementlist2));
+   
 
   }, [])
 
+  const fresh = () => {
+
+    if (movementlist.length == 0) {
+
+
+      var m1: Movement[] = [];
+      var m2: Movement[] = [];
+
+   searchbarRemote.getMovementByStatus("Pending").then(movements => {
+    setMovements1(movements);
+        m1 = movements;
+        searchbarRemote.getMovementByStatus("Authorized").then(movements => {
+
+           setMovements2(movements);
+           m2 =m1.concat(movements);
+           setMovements(m2);
+
+           console.log(m2);
+           
+   
+         });
+      });
+     
+
+      //render(movementlist1.concat(movementlist2));
+      //render(m);
+    }
+  
+    return  render(movementlist);
+
+  }
+
+
 
   const render = (movement: Movement[]) => {
-    if (movement[0] != undefined) {
-      console.log(movement);
-
-      console.log(movement[0].image);
-
+    //console.log(movementlist);
    
+    if (movement[0] != undefined) {
+
+      // console.log(movement[0].image);
+    //  console.log(movement);
+
 
       return (movement.map((tile) => (
-        
+
         <GridListTile key={tile.id}>
           <img src={require(`${tile.image}`)} alt={tile.name} />
           <GridListTileBar
             title={tile.name}
-            subtitle={<span>by: {(tile.author as User).firstName }</span>}
+            subtitle={<span>by: {(tile.author as User).firstName}</span>}
             actionIcon={
-              <IconButton onClick={() => { }} aria-label={`info about ${tile.name}`} className={classes.icon}>
-                <Link to="/Movement" className="MovementButton"> View Page </Link>
+              <IconButton onClick={() => { goToMove(tile)}} aria-label={`info about ${tile.name}`} className={classes.icon}>
+              
                 <InfoIcon />
               </IconButton>
             }
@@ -90,6 +108,15 @@ const HomeComponent: React.FC = () => {
 
   }
 
+
+  const goToMove = (movement: Movement) => {
+
+    
+        history.push("/Movement", movement);
+      
+      
+    
+  }
 
 
 
@@ -107,7 +134,7 @@ const HomeComponent: React.FC = () => {
           <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
             <ListSubheader component="div">Browse the Top Movements</ListSubheader>
           </GridListTile>
-          {render(movementlist)}
+          {fresh()}
         </GridList>
       </div>
     </Grid>
@@ -115,7 +142,7 @@ const HomeComponent: React.FC = () => {
 
 }
 
-export default HomeComponent;
+export default withRouter(HomeComponent);
 
 
 

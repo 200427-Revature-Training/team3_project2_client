@@ -29,10 +29,8 @@ export const getUserById = async (id: Number) => {
 //Returns movements with matching status string
 export const getMovementByStatus = async (status: string) => {
 
-    const response = await internalAxios.get<Movement[]>('/movement/status/stat', {
-        params: {
-            stat: status
-        }
+    const response = await internalAxios.get<Movement[]>('/movement/status/' + status, {
+        
     });
     return response.data.map(movements => {
         return movements;
@@ -40,7 +38,7 @@ export const getMovementByStatus = async (status: string) => {
 }
 
 export const changeStatus = async (movement: Movement) => {
-    const response = await internalAxios.put<Movement[]>('/movement', { movement });
+    const response = await internalAxios.put<Movement[]>('/movement',  movement );
     return response.data.map(movements => {
         return movements;
     });

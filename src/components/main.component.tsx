@@ -15,9 +15,10 @@ const MainComponent: React.FC = () => {
     return <div>
                 
                 <BrowserRouter>
-                    <NavigationComponent></NavigationComponent>    
-                    
+                <NavigationComponent></NavigationComponent>    
+
                     <Switch>
+                    
                         <Route exact path='/'>
                             <HomeComponent></HomeComponent>
                         </Route>
@@ -43,7 +44,8 @@ const MainComponent: React.FC = () => {
                             <MovementFormComponent></MovementFormComponent>
                         </Route>
                         <Route exact path='/Admin'>
-                            <AdminComponent></AdminComponent>                       </Route>
+                            <AdminComponent></AdminComponent>                     
+                              </Route>
                         
                     </Switch>
 

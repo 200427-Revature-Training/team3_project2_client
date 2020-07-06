@@ -15,6 +15,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import  *  as LinkReact from 'react-router-dom';
 import * as loginRemote from '../../remotes/login.remote';
 import { User } from '../../models/User';
+import { RouteComponentProps, withRouter, useHistory } from 'react-router-dom';
 
 
 function Copyright() {
@@ -62,8 +63,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const LoginComponent:React.FC=()=>{
+
+const LoginComponent:React.FC<RouteComponentProps> = (props) => {
   const classes = useStyles();
+
+  var u: User[] = props.location.state as User[];
+  const history = useHistory();
+
 
   const initialState={
     email:"",
@@ -106,8 +112,16 @@ const submitHandler =(e:any)=>{
       role: 1
   };
   
-  loginRemote.login(user).then(user => {
-    console.log(user);
+  loginRemote.login(user).then(use => {
+   console.log(use);
+   // console.log(u);
+    
+    if ( use.userRoleId.id == 2) {
+      history.push("/Admin", use);
+    }
+    else if (use.userRoleId.id == 1) {
+      history.push("/User", use);
+    }
 
   });
   }
@@ -205,4 +219,6 @@ const validate =()=>{
   );
 }
 
-export default LoginComponent; 
+export default withRouter(LoginComponent);
+
+

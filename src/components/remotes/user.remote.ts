@@ -22,6 +22,17 @@ export const makeNewMovement = async (movememnt : Movement) => {
 
 }
 
+//Returns movements with matching status string
+export const getMovementByUser = async (id: number) => {
+
+    const response = await internalAxios.get<Movement[]>('/movement/user/' + id, {
+        
+    });
+   // console.log(response);
+    return response.data.map(movements => {
+        return movements;
+    });
+}
 
 //Returns movements with matching userid number
 export const getMovementByStatus = async (id: number) => {

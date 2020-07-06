@@ -128,7 +128,7 @@ const SignupComponent: React.FC = () => {
         password: singupForm.password,
         firstName: singupForm.firstName,
         lastName: singupForm.lastName,
-        roleId: role
+        role: role
 
       }
       loginRemote.signup(user);

@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const NavigationComponent: React.FC = () => {
   //Needs a user to detect if logged in and to make movement with
   const classes = useStyles();
-  let loggedin = true;
+  let loggedin = false;
   const [modalVisible, setModalVisible] = useState(false);
   const [moveName, setMoveName] = useState('');
   const [moveGoal, setMoveGoal] = useState(0);
@@ -110,7 +110,7 @@ const NavigationComponent: React.FC = () => {
     password: "singupForm.password",
     firstName: "singupForm.firstName",
     lastName: "singupForm.lastName",
-    roleId: 1
+    role: 2
 
   }
   var m: Movement[] = [];
@@ -120,6 +120,27 @@ const NavigationComponent: React.FC = () => {
     if (loggedin == true) {
       return (<Button color="default" className="NewMovementButton" onClick={() => setModalVisible(true)}> New Movement </Button>)
     }
+  }
+
+  const renderLoginUser = () => {
+    if (loggedin == false) {
+      return (  
+        <div>
+      <Button color="primary" > <Link to="/Login" className="SingInButton"> Sign-in </Link> </Button>
+      <Button color="primary"> <Link to="/SignUp" className="SingUpButton"> Sign-up </Link> </Button>
+      </div>)
+    }
+    else if(loggedin == true && user.role == 2){
+      return ( 
+        <Button color="primary" > <Link to="/Admin" className="SingInButton"> Profile </Link> </Button>     
+        )
+    }
+    else if(loggedin == true && user.role == 1){
+      return ( 
+        <Button color="primary" > <Link to="/User" className="SingInButton"> Profile </Link> </Button>     
+        )
+    }
+
   }
 
 
@@ -189,7 +210,7 @@ const NavigationComponent: React.FC = () => {
         console.log(Movements);
         history.push("/", Movements);
       });
-      
+
     }
   }
 
@@ -268,8 +289,8 @@ const NavigationComponent: React.FC = () => {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
-          <Button color="primary" > <Link to="/Login" className="SingInButton"> Sign-in </Link> </Button>
-          <Button color="primary"> <Link to="/SignUp" className="SingUpButton"> Sign-up </Link> </Button>
+          {renderLoginUser()}
+        
         </Toolbar>
       </AppBar>
     </div>

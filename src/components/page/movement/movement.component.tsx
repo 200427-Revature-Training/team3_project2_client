@@ -41,7 +41,7 @@ const MovementComponent: React.FC<RouteComponentProps> = (props) => {
         {
 
           <GridListTile key={tile.id}>
-            <img src={require(`${'../home/images/flood.jpg'}`)} alt={tile.name} />
+            <img src={require(`${tile.image}`)} alt={tile.name} />
             <GridListTileBar
               title={tile.name}
               subtitle={<span>by: {(tile.author as User).firstName}</span>}

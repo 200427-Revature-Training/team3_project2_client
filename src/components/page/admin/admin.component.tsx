@@ -5,8 +5,8 @@ import { Movement } from '../../models/Movement';
 import { User } from '../../models/User';
 import * as adminRemote from '../../remotes/admin.remote';
 import InfoIcon from '@material-ui/icons/Info';
-
-
+import RemoveIcon from '@material-ui/icons/Remove';
+import AddIcon from '@material-ui/icons/Add';
 
 const AdminComponent: React.FC = (props) => {
     const [movementList, setMovements] = useState<Movement[]>([]);
@@ -39,6 +39,15 @@ const AdminComponent: React.FC = (props) => {
     }
 
 
+    const updateMovement = (move : Movement) => {
+        
+            console.log("Use this method to send the movement");
+      
+      
+
+    }
+
+
 
     const render = (movement: Movement[]) => {
 
@@ -51,11 +60,18 @@ const AdminComponent: React.FC = (props) => {
                         title={tile.name}
                         subtitle={<span>by: {(tile.author as User).firstName}</span>}
                         actionIcon={
-                            <IconButton onClick={() => { }} aria-label={`info about ${tile.name}`} className={classes.icon}>
-                                <InfoIcon />
-                            </IconButton>
+                            <Button onClick={() => {updateMovement(tile) }} aria-label={`info about ${tile.name}`} className={classes.icon}>
+                                <AddIcon />
+                            </Button>
+                            
                         }
+                       
+                           
+                            
+                        
+                        
                     />
+                    
                 </GridListTile>
             )))
         }

@@ -181,6 +181,7 @@ const NavigationComponent: React.FC = () => {
 
   const saveMovement = () => {
     var typeid = 0;
+    var ima = "";
     switch (moveType) {
       case "Educational": {
         typeid = 1;
@@ -212,6 +213,29 @@ const NavigationComponent: React.FC = () => {
       }
     }
 
+    switch (moveImage) {
+      case "Flood": {
+        ima = './images/flood.jpg';
+        break;
+      }
+      case "Fire": {
+        ima = './images/fire.jpg';
+        break;
+      }
+      case "Covid": {
+        ima = './images/covid.jpg';
+        break;
+      }
+      case "Puppies": {
+        ima = './images/flood.jpg';
+        break;
+      }     
+      default: {
+        ima = './images/tree.jpg';
+        break;
+      }
+    }
+
     let m: Movement = {
 
       id: 0,
@@ -222,7 +246,7 @@ const NavigationComponent: React.FC = () => {
       author: 1,
       status: 1,
       type: typeid,
-      image: './images/flood.jpg',
+      image: ima,
       name: moveName
 
     };
